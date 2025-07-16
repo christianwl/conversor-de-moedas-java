@@ -1,5 +1,7 @@
 package br.com.alura.conversordemoedas.modelos;
 
+import br.com.alura.conversordemoedas.excecoes.InvalidKeyException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,13 +12,17 @@ public class InicializadorDeTaxas {
 
     public List<CambioMoeda> inicializar(ConsultaTaxaMoedas consultaTaxaMoedas) {
         List<CambioMoeda> cambiosPadrao = new ArrayList<>();
+        try {
+            for (String moeda : this.moedasPadrao) {
 
-        for (String moeda : this.moedasPadrao) {
-            CambioMoeda cambioMoeda = consultaTaxaMoedas.buscarMoeda(moeda);
-            if (cambioMoeda != null) {
+                CambioMoeda cambioMoeda = consultaTaxaMoedas.buscarMoeda(moeda);
                 Map<String, Double> taxasValidas = obterTaxas(moeda, cambioMoeda.conversionRates());
                 cambiosPadrao.add(new CambioMoeda(moeda, taxasValidas));
+
             }
+        } catch (InvalidKeyException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
         return cambiosPadrao;
     }

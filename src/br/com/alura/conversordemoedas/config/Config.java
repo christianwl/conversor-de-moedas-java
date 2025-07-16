@@ -15,5 +15,3 @@ public class Config {
         return properties.getProperty("apiKey");
     }
 }
-
-
