@@ -3,20 +3,17 @@ package br.com.alura.conversordemoedas.principal;
 import br.com.alura.conversordemoedas.calculo.ConverterMoeda;
 import br.com.alura.conversordemoedas.modelos.CambioMoeda;
 import br.com.alura.conversordemoedas.modelos.TipoConversor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+@RequiredArgsConstructor
 public class GerenciadorDeEntrada {
     private final Scanner scanner;
     private final ConverterMoeda converterMoeda;
-
-    public GerenciadorDeEntrada(Scanner scanner, ConverterMoeda converterMoeda) {
-        this.scanner = scanner;
-        this.converterMoeda = converterMoeda;
-    }
 
     public void iniciar(List<CambioMoeda> moedas, List<TipoConversor> conversores) {
         int opcao = 0;
