@@ -1,7 +1,7 @@
 package br.com.alura.conversordemoedas.principal;
 
 import br.com.alura.conversordemoedas.calculo.ConverterMoeda;
-import br.com.alura.conversordemoedas.modelos.CambioMoeda;
+import br.com.alura.conversordemoedas.modelos.ExchangeRateDTO;
 import br.com.alura.conversordemoedas.modelos.TipoConversor;
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +15,7 @@ public class GerenciadorDeEntrada {
     private final Scanner scanner;
     private final ConverterMoeda converterMoeda;
 
-    public void iniciar(List<CambioMoeda> moedas, List<TipoConversor> conversores) {
+    public void iniciar(List<ExchangeRateDTO> moedas, List<TipoConversor> conversores) {
         int opcao = 0;
 
         do {
@@ -35,7 +35,7 @@ public class GerenciadorDeEntrada {
 
                     TipoConversor tipoConversor = conversores.get(opcao - 1);
 
-                    for (CambioMoeda moeda : moedas) {
+                    for (ExchangeRateDTO moeda : moedas) {
                         if (moeda.baseCode().equals(tipoConversor.moedaEscolhida())) {
                             converterMoeda.configurar(tipoConversor, moeda);
                             break;
@@ -64,7 +64,7 @@ public class GerenciadorDeEntrada {
         System.out.println("Programa Encerrado com sucesso!");
     }
 
-    public List<TipoConversor> exibirEAtribuirOpcoes(List<CambioMoeda> moedas){
+    public List<TipoConversor> exibirEAtribuirOpcoes(List<ExchangeRateDTO> moedas){
         String[] nomeMoedas = {"Dólar", "Peso Argentino", "Real Brasileiro", "Peso Colombiano"};
         String decoracao = "*****************************************************************";
         List<TipoConversor> conversores = new ArrayList<>();

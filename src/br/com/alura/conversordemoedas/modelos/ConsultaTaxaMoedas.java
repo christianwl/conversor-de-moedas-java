@@ -8,7 +8,7 @@ import com.google.gson.GsonBuilder;
 public class ConsultaTaxaMoedas extends ConexaoHttp {
     private String apiKey = System.getenv("EXCHANGE_API_KEY");
 
-    public CambioMoeda buscarMoeda(String moeda){
+    public ExchangeRateDTO buscarMoeda(String moeda){
         if (apiKey == null){
             throw new InvalidKeyException("A variável de ambiente EXCHANGE_API_KEY não foi configurada!");
         }
@@ -21,6 +21,6 @@ public class ConsultaTaxaMoedas extends ConexaoHttp {
             throw new InvalidKeyException("Chave de Api inválida ou inexistente");
         }
 
-        return gson.fromJson(responseHttp(endereco), CambioMoeda.class);
+        return gson.fromJson(responseHttp(endereco), ExchangeRateDTO.class);
     }
 }

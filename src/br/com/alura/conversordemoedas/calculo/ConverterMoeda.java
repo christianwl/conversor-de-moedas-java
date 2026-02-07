@@ -1,14 +1,14 @@
 package br.com.alura.conversordemoedas.calculo;
 
-import br.com.alura.conversordemoedas.modelos.CambioMoeda;
+import br.com.alura.conversordemoedas.modelos.ExchangeRateDTO;
 import br.com.alura.conversordemoedas.modelos.TipoConversor;
 
 public class ConverterMoeda {
     private String moeda;
     private String conversor;
-    private CambioMoeda taxa;
+    private ExchangeRateDTO taxa;
 
-    public void configurar(TipoConversor tipoConversor, CambioMoeda taxa){
+    public void configurar(TipoConversor tipoConversor, ExchangeRateDTO taxa){
         this.moeda = tipoConversor.moedaEscolhida();
         this.conversor = tipoConversor.conversor();
         this.taxa = taxa;

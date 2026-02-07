@@ -10,14 +10,14 @@ import java.util.Map;
 public class InicializadorDeTaxas {
     private String[] moedasPadrao = {"USD", "ARS", "BRL", "COP"};
 
-    public List<CambioMoeda> inicializar(ConsultaTaxaMoedas consultaTaxaMoedas) {
-        List<CambioMoeda> cambiosPadrao = new ArrayList<>();
+    public List<ExchangeRateDTO> inicializar(ConsultaTaxaMoedas consultaTaxaMoedas) {
+        List<ExchangeRateDTO> cambiosPadrao = new ArrayList<>();
         try {
             for (String moeda : this.moedasPadrao) {
 
-                CambioMoeda cambioMoeda = consultaTaxaMoedas.buscarMoeda(moeda);
-                Map<String, Double> taxasValidas = obterTaxas(moeda, cambioMoeda.conversionRates());
-                cambiosPadrao.add(new CambioMoeda(moeda, taxasValidas));
+                ExchangeRateDTO exchangeRateDTO = consultaTaxaMoedas.buscarMoeda(moeda);
+                Map<String, Double> taxasValidas = obterTaxas(moeda, exchangeRateDTO.conversionRates());
+                cambiosPadrao.add(new ExchangeRateDTO(moeda, taxasValidas));
 
             }
         } catch (InvalidKeyException e) {
